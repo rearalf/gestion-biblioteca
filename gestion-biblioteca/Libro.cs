@@ -8,58 +8,42 @@ namespace gestion_biblioteca
 {
     public class Libro
     {
+        private int id;
         private string titulo;
         private string autor;
-        private int anio;
         private int cantidad;
 
-        public Libro(string titulo, string autor, string genero, int anio, int cantidad)
+        public Libro(int id, string titulo, string autor, int cantidad)
         {
+            this.id = id;
             this.titulo = titulo;
             this.autor = autor;
-            this.anio = anio;
             this.cantidad = cantidad;
         }
 
-        public string Titulo 
-        { 
-            get { return titulo; } 
-            set { titulo = value; } 
-        }
-        public string Autor 
-        { 
-            get { return autor; } 
-            set { autor = value; } 
-        }
-        public int Anio 
-        { 
-            get { return anio; } 
-            set { anio = value; } 
-        }
-        public int Cantidad 
-        { 
-            get { return cantidad; } 
-            private set { cantidad = value; } 
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
         }
 
-        public string MostrarInfo()
+        public string Titulo
         {
-            return $"{titulo} - {autor} ({anio}) | Disponibles: {cantidad}";
+            get { return titulo; }
+            set { titulo = value; }
         }
 
-        public bool Prestar()
+        public string Autor
         {
-            if (cantidad > 0)
-            {
-                cantidad--;
-                return true;
-            }
-            return false;
+            get { return autor; }
+            set { autor = value; }
         }
 
-        public void Devolver()
+        public int Cantidad
         {
-            cantidad++;
+            get { return cantidad; }
+            set { cantidad = value; }
         }
+
     }
 }

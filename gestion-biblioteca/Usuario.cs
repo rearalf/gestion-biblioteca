@@ -8,33 +8,33 @@ namespace gestion_biblioteca
 {
     public class Usuario
     {
+        private int id;
         private string nombre;
-        private int idUsuario;
         private string correo;
-        private string telefono;
-        private List<Prestamo> prestamos;
 
-        public Usuario(string nombre, int idUsuario, string correo, string telefono)
+        public Usuario(int id, string nombre, string correo)
         {
+            this.id = id;
             this.nombre = nombre;
-            this.idUsuario = idUsuario;
             this.correo = correo;
-            this.telefono = telefono;
-            this.prestamos = new List<Prestamo>();
         }
 
-        public string Nombre { get { return nombre; } set { nombre = value; } }
-        public int IdUsuario { get { return idUsuario; } }
-        public List<Prestamo> Prestamos { get { return prestamos; } }
-
-        public string MostrarInfo()
+        public int Id
         {
-            return $"{nombre} | ID: {idUsuario} | Correo: {correo} | Tel: {telefono}";
+            get { return id; }
+            set { id = value; }
         }
 
-        public void AgregarPrestamo(Prestamo prestamo)
+        public string Nombre
         {
-            prestamos.Add(prestamo);
+            get { return nombre; }
+            set { nombre = value; }
+        }
+
+        public string Correo
+        {
+            get { return correo; }
+            set { correo = value; }
         }
     }
 }
