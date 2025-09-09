@@ -1,10 +1,112 @@
+using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 namespace gestion_biblioteca
 {
-    public partial class Form1 : Form
+    public partial class mainForm : Form
     {
-        public Form1()
+        public mainForm()
         {
             InitializeComponent();
+
+            dgvUsers.ColumnCount = 3;
+            dgvUsers.Columns[0].Name = "Id";
+            dgvUsers.Columns[0].Width = 50;
+            dgvUsers.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvUsers.Columns[1].Name = "Nombre completo";
+            dgvUsers.Columns[1].Width = 225;
+            dgvUsers.Columns[2].Name = "Correo";
+            dgvUsers.Columns[2].Width = 225;
+
+            DataGridViewColumn columnId = dgvUsers.Columns["Id"];
+            columnId.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            DataGridViewColumn columnName = dgvUsers.Columns["Nombre completo"];
+            columnName.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            DataGridViewColumn columnEmail = dgvUsers.Columns["Correo"];
+            columnEmail.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        Biblioteca biblioteca = new Biblioteca();
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            if (mainForm.ActiveForm != null)
+                mainForm.ActiveForm.Close();
+        }
+
+        private void btnMinus_Click(object sender, EventArgs e)
+        {
+            if (mainForm.ActiveForm != null)
+                mainForm.ActiveForm.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnSaveUser_Click(object sender, EventArgs e)
+        {
+            string nombre = txtUserName.Text.Trim();
+            string correo = txtUserEmail.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(correo))
+            {
+                MessageBox.Show("Por favor, complete todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                Usuario nuevo = biblioteca.AgregarUsuario(nombre, correo);
+
+                refrescarUsuariosGrid();
+                txtUserName.Clear();
+                txtUserEmail.Clear();
+                MessageBox.Show($"Usuario creado con Id {nuevo.Id}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar el usuario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnNewUser_Click(object sender, EventArgs e)
+        {
+            txtUserName.Clear();
+            txtUserEmail.Clear();
+            txtUserId.Clear();
+            txtUserName.Focus();
+        }
+
+        private void dgvUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvUsers.Rows[e.RowIndex];
+                txtUserId.Text = row.Cells[0].Value?.ToString();
+                txtUserName.Text = row.Cells[1].Value?.ToString();
+                txtUserEmail.Text = row.Cells[2].Value?.ToString();
+            }
+        }
+
+        private void refrescarUsuariosGrid()
+        {
+            dgvUsers.Rows.Clear();
+            foreach (var usuario in biblioteca.ListarUsuarios())
+            {
+                dgvUsers.Rows.Add(usuario.Id, usuario.Nombre, usuario.Correo);
+            }
+        }
+
+        private void btnUpdateUser_Click(object sender, EventArgs e)
+        {
+            int id = int.TryParse(txtUserId.Text.Trim(), out id);
+            string nombre = txtUserName.Text.Trim();
+            string correo = txtUserEmail.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(correo))
+            {
+                MessageBox.Show("Por favor, complete todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
     }
 }
