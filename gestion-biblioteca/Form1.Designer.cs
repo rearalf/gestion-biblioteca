@@ -342,6 +342,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "mainForm";
             Text = "Gestión de Biblioteca";
+            MouseDown += mainForm_MouseDown;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).EndInit();
