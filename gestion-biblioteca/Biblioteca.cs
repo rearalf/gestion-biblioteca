@@ -9,15 +9,18 @@ namespace gestion_biblioteca
 {
     public class Biblioteca
     {
+        /* 
+         * Usuarios
+         */
         private List<Usuario> usuarios = new List<Usuario>();
 
         private Dictionary<int, Usuario> usuariosDict = new Dictionary<int, Usuario>();
         private Dictionary<int, int> userIdToRow = new Dictionary<int, int>();
-
+        
         private int nextRowIndex = 0;
         private int nextUsuarioId = 1;
         private int maxUsuarios;
-
+        
         public Biblioteca(int maxUsuarios = 100)
         {
             this.maxUsuarios = maxUsuarios;
@@ -61,6 +64,32 @@ namespace gestion_biblioteca
             usuariosDict.Remove(id);
             userIdToRow.Remove(id);
             nextRowIndex--;
+        }
+
+
+        /*
+         * Libros
+         */
+        private List<Libro> libros = new List<Libro>();
+        private Dictionary<int, Libro> librosDict = new Dictionary<int, Libro>();
+        private Dictionary<int, int> libroIdToRow = new Dictionary<int, int>();
+
+        private int nextRowLibroIndex = 0;
+        private int nextLibroId = 1;
+        private int maxLibros;
+
+        public Libro AgregarLibro(string titulo, string autor, int cantidad)
+        {
+            if (string.IsNullOrWhiteSpace(titulo)) throw new ArgumentException("Título inválido");
+            if (string.IsNullOrWhiteSpace(autor)) throw new ArgumentException("Autor inválido");
+            if (cantidad < 0) throw new ArgumentException("Cantidad inválida");
+            if (nextRowLibroIndex >= maxLibros) throw new InvalidOperationException("Máximo de libros alcanzado.");
+            int id = nextLibroId++;
+            Libro nuevoLibro = new Libro(id, titulo, autor, cantidad);
+            libros.Add(nuevoLibro);
+            librosDict[id] = nuevoLibro;
+            libroIdToRow[id] = nextRowLibroIndex++;
+            return nuevoLibro;
         }
     }
 }
