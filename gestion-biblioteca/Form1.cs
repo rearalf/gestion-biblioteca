@@ -20,6 +20,10 @@ namespace gestion_biblioteca
             InitializeComponent();
 
             create_dgvUsers();
+
+            gbUsers.Visible = false;
+            gbBooks.Visible = false;
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MouseDown += new MouseEventHandler(mainForm_MouseDown);
         }
@@ -33,9 +37,9 @@ namespace gestion_biblioteca
             dgvUsers.Columns[0].Width = 50;
             dgvUsers.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvUsers.Columns[1].Name = "Nombre completo";
-            dgvUsers.Columns[1].Width = 225;
+            dgvUsers.Columns[1].Width = 260;
             dgvUsers.Columns[2].Name = "Correo";
-            dgvUsers.Columns[2].Width = 225;
+            dgvUsers.Columns[2].Width = 260;
 
             DataGridViewColumn columnId = dgvUsers.Columns["Id"];
             columnId.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -44,6 +48,18 @@ namespace gestion_biblioteca
             DataGridViewColumn columnEmail = dgvUsers.Columns["Correo"];
             columnEmail.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             refrescarUsuariosGrid();
+
+            
+            dgvBook.ColumnCount = 4;
+            dgvBook.Columns[0].Name = "Id";
+            dgvBook.Columns[0].Width = 50;
+            dgvBook.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvBook.Columns[1].Name = "Titulo";
+            dgvBook.Columns[1].Width = 225;
+            dgvBook.Columns[2].Name = "Autor";
+            dgvBook.Columns[2].Width = 225;
+            dgvBook.Columns[3].Name = "Cantidad";
+            dgvBook.Columns[3].Width = 100;
         }
 
         private void mainForm_MouseDown(object? sender, MouseEventArgs e)
@@ -180,6 +196,18 @@ namespace gestion_biblioteca
             txtUserName.Clear();
             txtUserEmail.Clear();
             MessageBox.Show($"Usuario con Id {id} eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnViewUser_Click(object sender, EventArgs e)
+        {
+            gbUsers.Visible = true;
+            gbBooks.Visible = false;
+        }
+
+        private void btnViewBook_Click(object sender, EventArgs e)
+        {
+            gbUsers.Visible = false;
+            gbBooks.Visible = true;
         }
     }
 }
