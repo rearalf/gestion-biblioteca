@@ -44,6 +44,16 @@ namespace gestion_biblioteca
 
         private void btnSaveUser_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(txtUserId.Text.Trim()))
+            {
+                MessageBox.Show("Para crear un nuevo usuario, deje el campo Id vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUserName.Clear();
+                txtUserEmail.Clear();
+                txtUserId.Clear();
+                txtUserName.Focus();
+                return;
+            }
+
             string nombre = txtUserName.Text.Trim();
             string correo = txtUserEmail.Text.Trim();
 
@@ -66,6 +76,7 @@ namespace gestion_biblioteca
             {
                 MessageBox.Show($"Error al guardar el usuario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void btnNewUser_Click(object sender, EventArgs e)
@@ -98,14 +109,34 @@ namespace gestion_biblioteca
 
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
-            int id = int.TryParse(txtUserId.Text.Trim(), out id);
+            int id;
+            if (!int.TryParse(txtUserId.Text.Trim(), out id))
+            {
+                MessageBox.Show("El Id ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string nombre = txtUserName.Text.Trim();
             string correo = txtUserEmail.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(correo))
+            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(correo) || int.IsNegative(id))
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+
+            try
+            {
+                biblioteca.ActualizarUsuario(id, nombre, correo);
+
+                refrescarUsuariosGrid();
+                txtUserId.Clear();
+                txtUserName.Clear();
+                txtUserEmail.Clear();
+                MessageBox.Show($"Usuario con Id {id} actualizado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al actualizar el usuario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

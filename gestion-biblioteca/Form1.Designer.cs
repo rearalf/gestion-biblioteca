@@ -59,9 +59,10 @@
             btnViewUser.FlatAppearance.MouseOverBackColor = Color.White;
             btnViewUser.FlatStyle = FlatStyle.Flat;
             btnViewUser.Image = Properties.Resources.user;
-            btnViewUser.Location = new Point(10, 131);
+            btnViewUser.Location = new Point(11, 175);
+            btnViewUser.Margin = new Padding(3, 4, 3, 4);
             btnViewUser.Name = "btnViewUser";
-            btnViewUser.Size = new Size(82, 82);
+            btnViewUser.Size = new Size(94, 109);
             btnViewUser.TabIndex = 1;
             btnViewUser.UseVisualStyleBackColor = false;
             // 
@@ -73,9 +74,10 @@
             btnViewBook.FlatAppearance.MouseOverBackColor = Color.White;
             btnViewBook.FlatStyle = FlatStyle.Flat;
             btnViewBook.Image = Properties.Resources.book;
-            btnViewBook.Location = new Point(10, 219);
+            btnViewBook.Location = new Point(11, 292);
+            btnViewBook.Margin = new Padding(3, 4, 3, 4);
             btnViewBook.Name = "btnViewBook";
-            btnViewBook.Size = new Size(82, 82);
+            btnViewBook.Size = new Size(94, 109);
             btnViewBook.TabIndex = 2;
             btnViewBook.UseVisualStyleBackColor = false;
             // 
@@ -87,9 +89,10 @@
             btnViewBorrow.FlatAppearance.MouseOverBackColor = Color.White;
             btnViewBorrow.FlatStyle = FlatStyle.Flat;
             btnViewBorrow.Image = Properties.Resources.bookmark_alt;
-            btnViewBorrow.Location = new Point(10, 307);
+            btnViewBorrow.Location = new Point(11, 409);
+            btnViewBorrow.Margin = new Padding(3, 4, 3, 4);
             btnViewBorrow.Name = "btnViewBorrow";
-            btnViewBorrow.Size = new Size(82, 82);
+            btnViewBorrow.Size = new Size(94, 109);
             btnViewBorrow.TabIndex = 3;
             btnViewBorrow.UseVisualStyleBackColor = false;
             // 
@@ -106,9 +109,11 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(dgvUsers);
-            groupBox1.Location = new Point(98, 43);
+            groupBox1.Location = new Point(112, 57);
+            groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(594, 346);
+            groupBox1.Padding = new Padding(3, 4, 3, 4);
+            groupBox1.Size = new Size(679, 461);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Usuarios";
@@ -121,9 +126,10 @@
             btnDeleteUser.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
             btnDeleteUser.FlatAppearance.MouseOverBackColor = Color.White;
             btnDeleteUser.FlatStyle = FlatStyle.Flat;
-            btnDeleteUser.Location = new Point(253, 135);
+            btnDeleteUser.Location = new Point(291, 157);
+            btnDeleteUser.Margin = new Padding(3, 4, 3, 4);
             btnDeleteUser.Name = "btnDeleteUser";
-            btnDeleteUser.Size = new Size(75, 23);
+            btnDeleteUser.Size = new Size(86, 31);
             btnDeleteUser.TabIndex = 10;
             btnDeleteUser.Text = "Eliminar";
             btnDeleteUser.UseVisualStyleBackColor = false;
@@ -136,9 +142,10 @@
             btnUpdateUser.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
             btnUpdateUser.FlatAppearance.MouseOverBackColor = Color.White;
             btnUpdateUser.FlatStyle = FlatStyle.Flat;
-            btnUpdateUser.Location = new Point(172, 135);
+            btnUpdateUser.Location = new Point(199, 157);
+            btnUpdateUser.Margin = new Padding(3, 4, 3, 4);
             btnUpdateUser.Name = "btnUpdateUser";
-            btnUpdateUser.Size = new Size(75, 23);
+            btnUpdateUser.Size = new Size(86, 31);
             btnUpdateUser.TabIndex = 9;
             btnUpdateUser.Text = "Actualizar";
             btnUpdateUser.UseVisualStyleBackColor = false;
@@ -152,9 +159,10 @@
             btnNewUser.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
             btnNewUser.FlatAppearance.MouseOverBackColor = Color.White;
             btnNewUser.FlatStyle = FlatStyle.Flat;
-            btnNewUser.Location = new Point(91, 135);
+            btnNewUser.Location = new Point(106, 157);
+            btnNewUser.Margin = new Padding(3, 4, 3, 4);
             btnNewUser.Name = "btnNewUser";
-            btnNewUser.Size = new Size(75, 23);
+            btnNewUser.Size = new Size(86, 31);
             btnNewUser.TabIndex = 8;
             btnNewUser.Text = "Nuevo";
             btnNewUser.UseVisualStyleBackColor = false;
@@ -168,9 +176,10 @@
             btnSaveUser.FlatAppearance.MouseOverBackColor = Color.White;
             btnSaveUser.FlatStyle = FlatStyle.Flat;
             btnSaveUser.ForeColor = SystemColors.ControlText;
-            btnSaveUser.Location = new Point(10, 135);
+            btnSaveUser.Location = new Point(13, 157);
+            btnSaveUser.Margin = new Padding(3, 4, 3, 4);
             btnSaveUser.Name = "btnSaveUser";
-            btnSaveUser.Size = new Size(75, 23);
+            btnSaveUser.Size = new Size(86, 31);
             btnSaveUser.TabIndex = 7;
             btnSaveUser.Text = "Guardar";
             btnSaveUser.UseVisualStyleBackColor = false;
@@ -181,9 +190,10 @@
             txtUserEmail.BackColor = SystemColors.Window;
             txtUserEmail.BorderStyle = BorderStyle.None;
             txtUserEmail.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUserEmail.Location = new Point(135, 82);
+            txtUserEmail.Location = new Point(171, 91);
+            txtUserEmail.Margin = new Padding(3, 4, 3, 4);
             txtUserEmail.Name = "txtUserEmail";
-            txtUserEmail.Size = new Size(237, 18);
+            txtUserEmail.Size = new Size(271, 22);
             txtUserEmail.TabIndex = 6;
             // 
             // txtUserName
@@ -191,9 +201,10 @@
             txtUserName.BackColor = SystemColors.Window;
             txtUserName.BorderStyle = BorderStyle.None;
             txtUserName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUserName.Location = new Point(135, 51);
+            txtUserName.Location = new Point(171, 61);
+            txtUserName.Margin = new Padding(3, 4, 3, 4);
             txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(237, 18);
+            txtUserName.Size = new Size(271, 22);
             txtUserName.TabIndex = 5;
             // 
             // txtUserId
@@ -202,18 +213,19 @@
             txtUserId.BorderStyle = BorderStyle.None;
             txtUserId.Enabled = false;
             txtUserId.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUserId.Location = new Point(135, 20);
+            txtUserId.Location = new Point(171, 31);
+            txtUserId.Margin = new Padding(3, 4, 3, 4);
             txtUserId.Name = "txtUserId";
-            txtUserId.Size = new Size(237, 18);
+            txtUserId.Size = new Size(271, 22);
             txtUserId.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9.75F);
-            label3.Location = new Point(77, 85);
+            label3.Location = new Point(99, 91);
             label3.Name = "label3";
-            label3.Size = new Size(52, 17);
+            label3.Size = new Size(66, 23);
             label3.TabIndex = 1;
             label3.Text = "Correo:";
             // 
@@ -221,9 +233,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9.75F);
-            label2.Location = new Point(10, 54);
+            label2.Location = new Point(11, 61);
             label2.Name = "label2";
-            label2.Size = new Size(119, 17);
+            label2.Size = new Size(154, 23);
             label2.TabIndex = 1;
             label2.Text = "Nombre completo:";
             // 
@@ -231,9 +243,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(107, 23);
+            label1.Location = new Point(136, 31);
             label1.Name = "label1";
-            label1.Size = new Size(22, 17);
+            label1.Size = new Size(29, 23);
             label1.TabIndex = 1;
             label1.Text = "Id:";
             // 
@@ -242,10 +254,12 @@
             dgvUsers.AllowUserToAddRows = false;
             dgvUsers.AllowUserToDeleteRows = false;
             dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUsers.Location = new Point(6, 190);
+            dgvUsers.Location = new Point(6, 211);
+            dgvUsers.Margin = new Padding(3, 4, 3, 4);
             dgvUsers.Name = "dgvUsers";
             dgvUsers.ReadOnly = true;
-            dgvUsers.Size = new Size(582, 150);
+            dgvUsers.RowHeadersWidth = 51;
+            dgvUsers.Size = new Size(665, 242);
             dgvUsers.TabIndex = 11;
             dgvUsers.CellClick += dgvUsers_CellClick;
             // 
@@ -257,9 +271,10 @@
             button2.FlatAppearance.MouseOverBackColor = Color.White;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Image = Properties.Resources.chart_bar_rows;
-            button2.Location = new Point(10, 43);
+            button2.Location = new Point(11, 57);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(82, 82);
+            button2.Size = new Size(94, 109);
             button2.TabIndex = 0;
             button2.UseVisualStyleBackColor = false;
             // 
@@ -268,9 +283,9 @@
             label4.AutoSize = true;
             label4.Enabled = false;
             label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(12, 9);
+            label4.Location = new Point(14, 12);
             label4.Name = "label4";
-            label4.Size = new Size(232, 25);
+            label4.Size = new Size(295, 32);
             label4.TabIndex = 0;
             label4.Text = "GESTIÓN DE BIBLIOTECA";
             // 
@@ -284,9 +299,10 @@
             btnClose.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
             btnClose.FlatAppearance.MouseOverBackColor = Color.White;
             btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Location = new Point(663, 12);
+            btnClose.Location = new Point(758, 16);
+            btnClose.Margin = new Padding(3, 4, 3, 4);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(29, 28);
+            btnClose.Size = new Size(33, 37);
             btnClose.TabIndex = 10;
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
@@ -301,18 +317,19 @@
             btnMinus.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
             btnMinus.FlatAppearance.MouseOverBackColor = Color.White;
             btnMinus.FlatStyle = FlatStyle.Flat;
-            btnMinus.Location = new Point(628, 12);
+            btnMinus.Location = new Point(718, 16);
+            btnMinus.Margin = new Padding(3, 4, 3, 4);
             btnMinus.Name = "btnMinus";
-            btnMinus.Size = new Size(29, 28);
+            btnMinus.Size = new Size(33, 37);
             btnMinus.TabIndex = 10;
             btnMinus.UseVisualStyleBackColor = false;
             btnMinus.Click += btnMinus_Click;
             // 
             // mainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(703, 401);
+            ClientSize = new Size(803, 535);
             Controls.Add(btnMinus);
             Controls.Add(btnClose);
             Controls.Add(label4);
@@ -322,6 +339,7 @@
             Controls.Add(btnViewBook);
             Controls.Add(btnViewUser);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "mainForm";
             Text = "Gestión de Biblioteca";
             groupBox1.ResumeLayout(false);

@@ -43,6 +43,14 @@ namespace gestion_biblioteca
             return usuarios;
         }
 
-
+        public void ActualizarUsuario(int id, string nombre, string correo)
+        {
+            if (!usuariosDict.ContainsKey(id)) throw new KeyNotFoundException("Usuario no encontrado");
+            if (string.IsNullOrWhiteSpace(nombre)) throw new ArgumentException("Nombre inválido");
+            if (string.IsNullOrWhiteSpace(correo)) throw new ArgumentException("Correo inválido");
+            Usuario usuario = usuariosDict[id];
+            usuario.Nombre = nombre;
+            usuario.Correo = correo;
+        }
     }
 }
