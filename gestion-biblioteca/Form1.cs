@@ -49,7 +49,7 @@ namespace gestion_biblioteca
             columnEmail.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             refrescarUsuariosGrid();
 
-            
+
             dgvBook.ColumnCount = 4;
             dgvBook.Columns[0].Name = "Id";
             dgvBook.Columns[0].Width = 50;
@@ -81,6 +81,18 @@ namespace gestion_biblioteca
         {
             if (mainForm.ActiveForm != null)
                 mainForm.ActiveForm.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnViewUser_Click(object sender, EventArgs e)
+        {
+            gbUsers.Visible = true;
+            gbBooks.Visible = false;
+        }
+
+        private void btnViewBook_Click(object sender, EventArgs e)
+        {
+            gbUsers.Visible = false;
+            gbBooks.Visible = true;
         }
 
         private void btnSaveUser_Click(object sender, EventArgs e)
@@ -139,15 +151,6 @@ namespace gestion_biblioteca
             }
         }
 
-        private void refrescarUsuariosGrid()
-        {
-            dgvUsers.Rows.Clear();
-            foreach (var usuario in biblioteca.ListarUsuarios())
-            {
-                dgvUsers.Rows.Add(usuario.Id, usuario.Nombre, usuario.Correo);
-            }
-        }
-
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
             int id;
@@ -156,6 +159,7 @@ namespace gestion_biblioteca
                 MessageBox.Show("El Id ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             string nombre = txtUserName.Text.Trim();
             string correo = txtUserEmail.Text.Trim();
 
@@ -198,16 +202,111 @@ namespace gestion_biblioteca
             MessageBox.Show($"Usuario con Id {id} eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void btnViewUser_Click(object sender, EventArgs e)
+        private void refrescarUsuariosGrid()
         {
-            gbUsers.Visible = true;
-            gbBooks.Visible = false;
+            dgvUsers.Rows.Clear();
+            foreach (var usuario in biblioteca.ListarUsuarios())
+            {
+                dgvUsers.Rows.Add(usuario.Id, usuario.Nombre, usuario.Correo);
+            }
         }
 
-        private void btnViewBook_Click(object sender, EventArgs e)
+        private void btnSaveBook_Click(object sender, EventArgs e)
         {
-            gbUsers.Visible = false;
-            gbBooks.Visible = true;
+            if (!string.IsNullOrWhiteSpace(txtBookId.Text.Trim()))
+            {
+                MessageBox.Show("Para crear un nuevo libro, deje el campo Id vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtBookId.Clear();
+                txtTitleBook.Clear();
+                txtAuthorBook.Clear();
+                txtAmountBook.Clear();
+                txtTitleBook.Focus();
+                return;
+            }
+
+            string titulo = txtTitleBook.Text.Trim();
+            string autor = txtAuthorBook.Text.Trim();
+            int cantidad;
+            if (!int.TryParse(txtAmountBook.Text.Trim(), out cantidad) || cantidad < 0)
+            {
+                MessageBox.Show("La cantidad debe ser un número entero no negativo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(titulo) || string.IsNullOrWhiteSpace(autor))
+            {
+                MessageBox.Show("Por favor, complete todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                Libro nuevo = biblioteca.AgregarLibro(titulo, autor, cantidad);
+                refrescarLibrosGrid();
+                txtBookId.Clear();
+                txtTitleBook.Clear();
+                txtAuthorBook.Clear();
+                txtAmountBook.Clear();
+                MessageBox.Show($"Libro creado con Id {nuevo.Id}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar el libro: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnNewBook_Click(object sender, EventArgs e)
+        {
+            txtBookId.Clear();
+            txtTitleBook.Clear();
+            txtAuthorBook.Clear();
+            txtAmountBook.Clear();
+            txtTitleBook.Focus();
+        }
+
+        private void dgvBook_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvBook.Rows[e.RowIndex];
+                txtBookId.Text = row.Cells[0].Value?.ToString();
+                txtTitleBook.Text = row.Cells[1].Value?.ToString();
+                txtAuthorBook.Text = row.Cells[2].Value?.ToString();
+                txtAmountBook.Text = row.Cells[3].Value?.ToString();
+            }
+        }
+
+        private void refrescarLibrosGrid()
+        {
+            dgvBook.Rows.Clear();
+            foreach (var libro in biblioteca.ListarLibros())
+            {
+                dgvBook.Rows.Add(libro.Id, libro.Titulo, libro.Autor, libro.Cantidad);
+            }
+        }
+
+        private void btnUpdateBook_Click(object sender, EventArgs e)
+        {
+            int id;
+            if (!int.TryParse(txtBookId.Text.Trim(), out id))
+            {
+                MessageBox.Show("El Id ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string titulo = txtTitleBook.Text.Trim();
+            string autor = txtAuthorBook.Text.Trim();
+            int cantidad;
+
+            if (!int.TryParse(txtAmountBook.Text.Trim(), out cantidad) || cantidad < 0)
+            {
+                MessageBox.Show("La cantidad debe ser un número entero no negativo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(titulo) || string.IsNullOrWhiteSpace(autor))
+            {
+                MessageBox.Show("Por favor, complete todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
     }
 }

@@ -48,19 +48,19 @@
             btnClose = new Button();
             btnMinus = new Button();
             gbBooks = new GroupBox();
-            txtAuthorBook = new TextBox();
-            txtTitleBook = new TextBox();
-            txtBookId = new TextBox();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
-            txtAmountBook = new TextBox();
             btnDeleteBook = new Button();
             btnUpdateBook = new Button();
             btnNewBook = new Button();
             btnSaveBook = new Button();
             dgvBook = new DataGridView();
+            txtAmountBook = new TextBox();
+            txtAuthorBook = new TextBox();
+            txtTitleBook = new TextBox();
+            label8 = new Label();
+            txtBookId = new TextBox();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
             gbUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             gbBooks.SuspendLayout();
@@ -367,6 +367,98 @@
             gbBooks.TabStop = false;
             gbBooks.Text = "Libros";
             // 
+            // btnDeleteBook
+            // 
+            btnDeleteBook.BackColor = Color.White;
+            btnDeleteBook.FlatAppearance.BorderColor = Color.White;
+            btnDeleteBook.FlatAppearance.BorderSize = 0;
+            btnDeleteBook.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
+            btnDeleteBook.FlatAppearance.MouseOverBackColor = Color.White;
+            btnDeleteBook.FlatStyle = FlatStyle.Flat;
+            btnDeleteBook.Location = new Point(290, 172);
+            btnDeleteBook.Margin = new Padding(3, 4, 3, 4);
+            btnDeleteBook.Name = "btnDeleteBook";
+            btnDeleteBook.Size = new Size(86, 31);
+            btnDeleteBook.TabIndex = 7;
+            btnDeleteBook.Text = "Eliminar";
+            btnDeleteBook.UseVisualStyleBackColor = false;
+            // 
+            // btnUpdateBook
+            // 
+            btnUpdateBook.BackColor = Color.White;
+            btnUpdateBook.FlatAppearance.BorderColor = Color.White;
+            btnUpdateBook.FlatAppearance.BorderSize = 0;
+            btnUpdateBook.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
+            btnUpdateBook.FlatAppearance.MouseOverBackColor = Color.White;
+            btnUpdateBook.FlatStyle = FlatStyle.Flat;
+            btnUpdateBook.Location = new Point(198, 172);
+            btnUpdateBook.Margin = new Padding(3, 4, 3, 4);
+            btnUpdateBook.Name = "btnUpdateBook";
+            btnUpdateBook.Size = new Size(86, 31);
+            btnUpdateBook.TabIndex = 6;
+            btnUpdateBook.Text = "Actualizar";
+            btnUpdateBook.UseVisualStyleBackColor = false;
+            btnUpdateBook.Click += btnUpdateBook_Click;
+            // 
+            // btnNewBook
+            // 
+            btnNewBook.BackColor = Color.White;
+            btnNewBook.FlatAppearance.BorderColor = Color.White;
+            btnNewBook.FlatAppearance.BorderSize = 0;
+            btnNewBook.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
+            btnNewBook.FlatAppearance.MouseOverBackColor = Color.White;
+            btnNewBook.FlatStyle = FlatStyle.Flat;
+            btnNewBook.Location = new Point(105, 172);
+            btnNewBook.Margin = new Padding(3, 4, 3, 4);
+            btnNewBook.Name = "btnNewBook";
+            btnNewBook.Size = new Size(86, 31);
+            btnNewBook.TabIndex = 5;
+            btnNewBook.Text = "Nuevo";
+            btnNewBook.UseVisualStyleBackColor = false;
+            btnNewBook.Click += btnNewBook_Click;
+            // 
+            // btnSaveBook
+            // 
+            btnSaveBook.BackColor = Color.White;
+            btnSaveBook.FlatAppearance.BorderSize = 0;
+            btnSaveBook.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
+            btnSaveBook.FlatAppearance.MouseOverBackColor = Color.White;
+            btnSaveBook.FlatStyle = FlatStyle.Flat;
+            btnSaveBook.ForeColor = SystemColors.ControlText;
+            btnSaveBook.Location = new Point(12, 172);
+            btnSaveBook.Margin = new Padding(3, 4, 3, 4);
+            btnSaveBook.Name = "btnSaveBook";
+            btnSaveBook.Size = new Size(86, 31);
+            btnSaveBook.TabIndex = 4;
+            btnSaveBook.Text = "Guardar";
+            btnSaveBook.UseVisualStyleBackColor = false;
+            btnSaveBook.Click += btnSaveBook_Click;
+            // 
+            // dgvBook
+            // 
+            dgvBook.AllowUserToAddRows = false;
+            dgvBook.AllowUserToDeleteRows = false;
+            dgvBook.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvBook.Location = new Point(7, 211);
+            dgvBook.Margin = new Padding(3, 4, 3, 4);
+            dgvBook.Name = "dgvBook";
+            dgvBook.ReadOnly = true;
+            dgvBook.RowHeadersWidth = 51;
+            dgvBook.Size = new Size(665, 242);
+            dgvBook.TabIndex = 8;
+            dgvBook.CellClick += dgvBook_CellClick;
+            // 
+            // txtAmountBook
+            // 
+            txtAmountBook.BackColor = SystemColors.Window;
+            txtAmountBook.BorderStyle = BorderStyle.None;
+            txtAmountBook.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtAmountBook.Location = new Point(100, 117);
+            txtAmountBook.Margin = new Padding(3, 4, 3, 4);
+            txtAmountBook.Name = "txtAmountBook";
+            txtAmountBook.Size = new Size(271, 22);
+            txtAmountBook.TabIndex = 3;
+            // 
             // txtAuthorBook
             // 
             txtAuthorBook.BackColor = SystemColors.Window;
@@ -376,7 +468,7 @@
             txtAuthorBook.Margin = new Padding(3, 4, 3, 4);
             txtAuthorBook.Name = "txtAuthorBook";
             txtAuthorBook.Size = new Size(271, 22);
-            txtAuthorBook.TabIndex = 12;
+            txtAuthorBook.TabIndex = 2;
             // 
             // txtTitleBook
             // 
@@ -387,7 +479,17 @@
             txtTitleBook.Margin = new Padding(3, 4, 3, 4);
             txtTitleBook.Name = "txtTitleBook";
             txtTitleBook.Size = new Size(271, 22);
-            txtTitleBook.TabIndex = 11;
+            txtTitleBook.TabIndex = 1;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 9.75F);
+            label8.Location = new Point(11, 117);
+            label8.Name = "label8";
+            label8.Size = new Size(83, 23);
+            label8.TabIndex = 7;
+            label8.Text = "Cantidad:";
             // 
             // txtBookId
             // 
@@ -430,104 +532,6 @@
             label7.Size = new Size(29, 23);
             label7.TabIndex = 9;
             label7.Text = "Id:";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 9.75F);
-            label8.Location = new Point(11, 117);
-            label8.Name = "label8";
-            label8.Size = new Size(83, 23);
-            label8.TabIndex = 7;
-            label8.Text = "Cantidad:";
-            // 
-            // txtAmountBook
-            // 
-            txtAmountBook.BackColor = SystemColors.Window;
-            txtAmountBook.BorderStyle = BorderStyle.None;
-            txtAmountBook.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtAmountBook.Location = new Point(100, 117);
-            txtAmountBook.Margin = new Padding(3, 4, 3, 4);
-            txtAmountBook.Name = "txtAmountBook";
-            txtAmountBook.Size = new Size(271, 22);
-            txtAmountBook.TabIndex = 12;
-            // 
-            // btnDeleteBook
-            // 
-            btnDeleteBook.BackColor = Color.White;
-            btnDeleteBook.FlatAppearance.BorderColor = Color.White;
-            btnDeleteBook.FlatAppearance.BorderSize = 0;
-            btnDeleteBook.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
-            btnDeleteBook.FlatAppearance.MouseOverBackColor = Color.White;
-            btnDeleteBook.FlatStyle = FlatStyle.Flat;
-            btnDeleteBook.Location = new Point(290, 172);
-            btnDeleteBook.Margin = new Padding(3, 4, 3, 4);
-            btnDeleteBook.Name = "btnDeleteBook";
-            btnDeleteBook.Size = new Size(86, 31);
-            btnDeleteBook.TabIndex = 16;
-            btnDeleteBook.Text = "Eliminar";
-            btnDeleteBook.UseVisualStyleBackColor = false;
-            // 
-            // btnUpdateBook
-            // 
-            btnUpdateBook.BackColor = Color.White;
-            btnUpdateBook.FlatAppearance.BorderColor = Color.White;
-            btnUpdateBook.FlatAppearance.BorderSize = 0;
-            btnUpdateBook.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
-            btnUpdateBook.FlatAppearance.MouseOverBackColor = Color.White;
-            btnUpdateBook.FlatStyle = FlatStyle.Flat;
-            btnUpdateBook.Location = new Point(198, 172);
-            btnUpdateBook.Margin = new Padding(3, 4, 3, 4);
-            btnUpdateBook.Name = "btnUpdateBook";
-            btnUpdateBook.Size = new Size(86, 31);
-            btnUpdateBook.TabIndex = 15;
-            btnUpdateBook.Text = "Actualizar";
-            btnUpdateBook.UseVisualStyleBackColor = false;
-            // 
-            // btnNewBook
-            // 
-            btnNewBook.BackColor = Color.White;
-            btnNewBook.FlatAppearance.BorderColor = Color.White;
-            btnNewBook.FlatAppearance.BorderSize = 0;
-            btnNewBook.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
-            btnNewBook.FlatAppearance.MouseOverBackColor = Color.White;
-            btnNewBook.FlatStyle = FlatStyle.Flat;
-            btnNewBook.Location = new Point(105, 172);
-            btnNewBook.Margin = new Padding(3, 4, 3, 4);
-            btnNewBook.Name = "btnNewBook";
-            btnNewBook.Size = new Size(86, 31);
-            btnNewBook.TabIndex = 14;
-            btnNewBook.Text = "Nuevo";
-            btnNewBook.UseVisualStyleBackColor = false;
-            // 
-            // btnSaveBook
-            // 
-            btnSaveBook.BackColor = Color.White;
-            btnSaveBook.FlatAppearance.BorderSize = 0;
-            btnSaveBook.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
-            btnSaveBook.FlatAppearance.MouseOverBackColor = Color.White;
-            btnSaveBook.FlatStyle = FlatStyle.Flat;
-            btnSaveBook.ForeColor = SystemColors.ControlText;
-            btnSaveBook.Location = new Point(12, 172);
-            btnSaveBook.Margin = new Padding(3, 4, 3, 4);
-            btnSaveBook.Name = "btnSaveBook";
-            btnSaveBook.Size = new Size(86, 31);
-            btnSaveBook.TabIndex = 13;
-            btnSaveBook.Text = "Guardar";
-            btnSaveBook.UseVisualStyleBackColor = false;
-            // 
-            // dgvBook
-            // 
-            dgvBook.AllowUserToAddRows = false;
-            dgvBook.AllowUserToDeleteRows = false;
-            dgvBook.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBook.Location = new Point(7, 211);
-            dgvBook.Margin = new Padding(3, 4, 3, 4);
-            dgvBook.Name = "dgvBook";
-            dgvBook.ReadOnly = true;
-            dgvBook.RowHeadersWidth = 51;
-            dgvBook.Size = new Size(665, 242);
-            dgvBook.TabIndex = 17;
             // 
             // mainForm
             // 

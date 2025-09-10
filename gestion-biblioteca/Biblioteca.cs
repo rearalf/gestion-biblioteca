@@ -21,9 +21,10 @@ namespace gestion_biblioteca
         private int nextUsuarioId = 1;
         private int maxUsuarios;
         
-        public Biblioteca(int maxUsuarios = 100)
+        public Biblioteca(int maxUsuarios = 100, int maxLibros = 100)
         {
             this.maxUsuarios = maxUsuarios;
+            this.maxLibros = maxLibros;
         }
 
         public Usuario AgregarUsuario(string nombre, string correo)
@@ -83,13 +84,30 @@ namespace gestion_biblioteca
             if (string.IsNullOrWhiteSpace(titulo)) throw new ArgumentException("Título inválido");
             if (string.IsNullOrWhiteSpace(autor)) throw new ArgumentException("Autor inválido");
             if (cantidad < 0) throw new ArgumentException("Cantidad inválida");
-            if (nextRowLibroIndex >= maxLibros) throw new InvalidOperationException("Máximo de libros alcanzado.");
+            if (nextRowLibroIndex >= maxLibros) throw new InvalidOperationException($"Máximo de libros alcanzado. La cantidad máxima es de {maxLibros}.");
             int id = nextLibroId++;
             Libro nuevoLibro = new Libro(id, titulo, autor, cantidad);
             libros.Add(nuevoLibro);
             librosDict[id] = nuevoLibro;
             libroIdToRow[id] = nextRowLibroIndex++;
             return nuevoLibro;
+        }
+
+        public List<Libro> ListarLibros()
+        {
+            return libros;
+        }
+
+        public void ActualizarLibro(int id, string titulo, string autor, int cantidad)
+        {
+            if (!librosDict.ContainsKey(id)) throw new KeyNotFoundException("Libro no encontrado");
+            if (string.IsNullOrWhiteSpace(titulo)) throw new ArgumentException("Título inválido");
+            if (string.IsNullOrWhiteSpace(autor)) throw new ArgumentException("Autor inválido");
+            if (cantidad < 0) throw new ArgumentException("Cantidad inválida");
+            Libro libro = librosDict[id];
+            libro.Titulo = titulo;
+            libro.Autor = autor;
+            libro.Cantidad = cantidad;
         }
     }
 }
