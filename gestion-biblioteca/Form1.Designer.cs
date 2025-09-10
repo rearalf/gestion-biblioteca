@@ -133,6 +133,7 @@
             btnDeleteUser.TabIndex = 10;
             btnDeleteUser.Text = "Eliminar";
             btnDeleteUser.UseVisualStyleBackColor = false;
+            btnDeleteUser.Click += btnDeleteUser_Click;
             // 
             // btnUpdateUser
             // 
@@ -281,7 +282,8 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Enabled = false;
+            label4.BackColor = SystemColors.Control;
+            label4.FlatStyle = FlatStyle.Flat;
             label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.Location = new Point(14, 12);
             label4.Name = "label4";

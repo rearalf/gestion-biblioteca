@@ -165,6 +165,21 @@ namespace gestion_biblioteca
             }
         }
 
-        
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            int id;
+            if (!int.TryParse(txtUserId.Text.Trim(), out id))
+            {
+                MessageBox.Show("El Id ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            biblioteca.EliminarUsuario(id);
+            refrescarUsuariosGrid();
+            txtUserId.Clear();
+            txtUserName.Clear();
+            txtUserEmail.Clear();
+            MessageBox.Show($"Usuario con Id {id} eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

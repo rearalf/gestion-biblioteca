@@ -52,5 +52,15 @@ namespace gestion_biblioteca
             usuario.Nombre = nombre;
             usuario.Correo = correo;
         }
+
+        public void EliminarUsuario(int id)
+        {
+            if (!usuariosDict.ContainsKey(id)) throw new KeyNotFoundException("Usuario no encontrado");
+            Usuario usuario = usuariosDict[id];
+            usuarios.Remove(usuario);
+            usuariosDict.Remove(id);
+            userIdToRow.Remove(id);
+            nextRowIndex--;
+        }
     }
 }
