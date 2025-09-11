@@ -33,6 +33,7 @@ namespace gestion_biblioteca
 
         private int? selectedUserId = null;
         private int? selectedBookId = null;
+        private Prestamo? prestamoSeleccionado = null;
 
         private void create_dgvUsers()
         {
@@ -479,6 +480,57 @@ namespace gestion_biblioteca
             txtLoanBook.Clear();
             txtLoanId.Clear();
             txtLoanDevotionDate.Clear();
+
+            selectedUserId = null;
+            selectedBookId = null;
+            prestamoSeleccionado = null;
+        }
+
+        private void dgvLoans_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvLoans.Rows[e.RowIndex];
+
+                int prestamoId = Convert.ToInt32(row.Cells[0].Value);
+                prestamoSeleccionado = biblioteca.ObtenerPrestamo(prestamoId);
+
+                if (prestamoSeleccionado != null)
+                {
+                    txtLoanId.Text = prestamoSeleccionado.Id.ToString();
+                    txtLoanUser.Text = prestamoSeleccionado.Usuario.Nombre;
+                    txtLoanBook.Text = prestamoSeleccionado.Libro.Titulo;
+                    txtLoanDate.Text = prestamoSeleccionado.FechaPrestamo.ToString("dd/MM/yyyy");
+                    txtLoanDevotionDate.Text = prestamoSeleccionado.FechaDevolucion.HasValue ? prestamoSeleccionado.FechaDevolucion.Value.ToString("dd/MM/yyyy") : "No devuelto";
+                }
+            }
+        }
+
+        private void btnLoanDevotion_Click(object sender, EventArgs e)
+        {
+            if (prestamoSeleccionado == null)
+            {
+                MessageBox.Show("Seleccione un préstamo para registrar la devolución.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                biblioteca.RegistrarDevolucion(prestamoSeleccionado.Id);
+                MessageBox.Show($"Devolución registrada para el préstamo Id {prestamoSeleccionado.Id}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loanRefreshGrid();
+                selectedUserId = null;
+                selectedBookId = null;
+                prestamoSeleccionado = null;
+                txtLoanUser.Clear();
+                txtLoanBook.Clear();
+                txtLoanId.Clear();
+                txtLoanDevotionDate.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al registrar la devolución: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -16,11 +16,11 @@ namespace gestion_biblioteca
 
         private Dictionary<int, Usuario> usuariosDict = new Dictionary<int, Usuario>();
         private Dictionary<int, int> userIdToRow = new Dictionary<int, int>();
-        
+
         private int nextRowIndex = 0;
         private int nextUsuarioId = 1;
         private int maxUsuarios;
-        
+
         public Biblioteca(int maxUsuarios = 100, int maxLibros = 100)
         {
             this.maxUsuarios = maxUsuarios;
@@ -140,7 +140,7 @@ namespace gestion_biblioteca
 
             int prestamoId = nextPrestamoId++;
             Prestamo nuevoPrestamo = new Prestamo(prestamoId, usuario, libro);
-            
+
             prestamos.Add(nuevoPrestamo);
             prestamosDict[prestamoId] = nuevoPrestamo;
             libro.Cantidad--;
@@ -151,6 +151,34 @@ namespace gestion_biblioteca
         public List<Prestamo> ListarPrestamos()
         {
             return prestamos;
+        }
+
+        public void RegistrarDevolucion(int prestamoId)
+        {
+            if (!prestamosDict.ContainsKey(prestamoId))
+            {
+                throw new KeyNotFoundException("Préstamo no encontrado");
+            }
+
+            Prestamo prestamo = prestamosDict[prestamoId];
+
+            if (prestamo.FechaDevolucion != null)
+            {
+                throw new InvalidOperationException("El libro ya ha sido devuelto");
+            }
+
+            prestamo.Devolver();
+            prestamo.Libro.Cantidad++;
+        }
+
+        public Prestamo ObtenerPrestamo(int prestamoId)
+        {
+            if (!prestamosDict.ContainsKey(prestamoId))
+            {
+                throw new KeyNotFoundException("Préstamo no encontrado");
+            }
+
+            return prestamosDict[prestamoId];
         }
     }
 }

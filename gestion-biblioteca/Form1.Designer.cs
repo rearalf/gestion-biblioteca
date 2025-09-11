@@ -63,7 +63,7 @@
             label7 = new Label();
             gbLoans = new GroupBox();
             btnLoanClear = new Button();
-            btnReturn = new Button();
+            btnLoanDevotion = new Button();
             btnLend = new Button();
             txtLoanDevotionDate = new TextBox();
             txtLoanDate = new TextBox();
@@ -562,7 +562,7 @@
             // gbLoans
             // 
             gbLoans.Controls.Add(btnLoanClear);
-            gbLoans.Controls.Add(btnReturn);
+            gbLoans.Controls.Add(btnLoanDevotion);
             gbLoans.Controls.Add(btnLend);
             gbLoans.Controls.Add(txtLoanDevotionDate);
             gbLoans.Controls.Add(txtLoanDate);
@@ -597,14 +597,15 @@
             btnLoanClear.UseVisualStyleBackColor = true;
             btnLoanClear.Click += btnLoanClear_Click;
             // 
-            // btnReturn
+            // btnLoanDevotion
             // 
-            btnReturn.Location = new Point(116, 175);
-            btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(94, 29);
-            btnReturn.TabIndex = 5;
-            btnReturn.Text = "Devolver";
-            btnReturn.UseVisualStyleBackColor = true;
+            btnLoanDevotion.Location = new Point(116, 175);
+            btnLoanDevotion.Name = "btnLoanDevotion";
+            btnLoanDevotion.Size = new Size(94, 29);
+            btnLoanDevotion.TabIndex = 5;
+            btnLoanDevotion.Text = "Devolver";
+            btnLoanDevotion.UseVisualStyleBackColor = true;
+            btnLoanDevotion.Click += btnLoanDevotion_Click;
             // 
             // btnLend
             // 
@@ -750,6 +751,7 @@
             dgvLoans.RowHeadersWidth = 51;
             dgvLoans.Size = new Size(352, 188);
             dgvLoans.TabIndex = 0;
+            dgvLoans.CellClick += dgvLoans_CellClick;
             // 
             // dgvBookLoans
             // 
@@ -864,7 +866,7 @@
         private TextBox txtLoanBook;
         private Button btnLend;
         private Button btnLoanClear;
-        private Button btnReturn;
+        private Button btnLoanDevotion;
         private TextBox txtLoanId;
         private Label label16;
     }

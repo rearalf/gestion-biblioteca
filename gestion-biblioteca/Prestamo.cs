@@ -22,5 +22,14 @@ namespace gestion_biblioteca
             FechaPrestamo = DateTime.Now;
             FechaDevolucion = null;
         }
+
+        public void Devolver()
+        {
+            if (FechaDevolucion != null)
+            {
+                throw new InvalidOperationException("El libro ya ha sido devuelto");
+            }
+            FechaDevolucion = DateTime.Now;
+        }
     }
 }
