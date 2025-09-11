@@ -61,10 +61,34 @@
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
+            gbLoans = new GroupBox();
+            btnLoanClear = new Button();
+            btnReturn = new Button();
+            btnLend = new Button();
+            txtLoanDevotionDate = new TextBox();
+            txtLoanDate = new TextBox();
+            txtLoanBook = new TextBox();
+            txtLoanId = new TextBox();
+            txtLoanUser = new TextBox();
+            label13 = new Label();
+            label15 = new Label();
+            label14 = new Label();
+            label16 = new Label();
+            label12 = new Label();
+            label11 = new Label();
+            label10 = new Label();
+            label9 = new Label();
+            dgvLoans = new DataGridView();
+            dgvBookLoans = new DataGridView();
+            dgvUserLoans = new DataGridView();
             gbUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             gbBooks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBook).BeginInit();
+            gbLoans.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvLoans).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvBookLoans).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUserLoans).BeginInit();
             SuspendLayout();
             // 
             // btnViewUser
@@ -113,6 +137,7 @@
             btnViewBorrow.Size = new Size(94, 109);
             btnViewBorrow.TabIndex = 3;
             btnViewBorrow.UseVisualStyleBackColor = false;
+            btnViewBorrow.Click += btnViewBorrow_Click;
             // 
             // gbUsers
             // 
@@ -534,6 +559,224 @@
             label7.TabIndex = 9;
             label7.Text = "Id:";
             // 
+            // gbLoans
+            // 
+            gbLoans.Controls.Add(btnLoanClear);
+            gbLoans.Controls.Add(btnReturn);
+            gbLoans.Controls.Add(btnLend);
+            gbLoans.Controls.Add(txtLoanDevotionDate);
+            gbLoans.Controls.Add(txtLoanDate);
+            gbLoans.Controls.Add(txtLoanBook);
+            gbLoans.Controls.Add(txtLoanId);
+            gbLoans.Controls.Add(txtLoanUser);
+            gbLoans.Controls.Add(label13);
+            gbLoans.Controls.Add(label15);
+            gbLoans.Controls.Add(label14);
+            gbLoans.Controls.Add(label16);
+            gbLoans.Controls.Add(label12);
+            gbLoans.Controls.Add(label11);
+            gbLoans.Controls.Add(label10);
+            gbLoans.Controls.Add(label9);
+            gbLoans.Controls.Add(dgvLoans);
+            gbLoans.Controls.Add(dgvBookLoans);
+            gbLoans.Controls.Add(dgvUserLoans);
+            gbLoans.Location = new Point(111, 57);
+            gbLoans.Name = "gbLoans";
+            gbLoans.Size = new Size(679, 461);
+            gbLoans.TabIndex = 12;
+            gbLoans.TabStop = false;
+            gbLoans.Text = "Prestamos";
+            // 
+            // btnLoanClear
+            // 
+            btnLoanClear.Location = new Point(216, 175);
+            btnLoanClear.Name = "btnLoanClear";
+            btnLoanClear.Size = new Size(94, 29);
+            btnLoanClear.TabIndex = 5;
+            btnLoanClear.Text = "Limpiar";
+            btnLoanClear.UseVisualStyleBackColor = true;
+            btnLoanClear.Click += btnLoanClear_Click;
+            // 
+            // btnReturn
+            // 
+            btnReturn.Location = new Point(116, 175);
+            btnReturn.Name = "btnReturn";
+            btnReturn.Size = new Size(94, 29);
+            btnReturn.TabIndex = 5;
+            btnReturn.Text = "Devolver";
+            btnReturn.UseVisualStyleBackColor = true;
+            // 
+            // btnLend
+            // 
+            btnLend.Location = new Point(16, 175);
+            btnLend.Name = "btnLend";
+            btnLend.Size = new Size(94, 29);
+            btnLend.TabIndex = 5;
+            btnLend.Text = "Prestar";
+            btnLend.UseVisualStyleBackColor = true;
+            btnLend.Click += btnLend_Click;
+            // 
+            // txtLoanDevotionDate
+            // 
+            txtLoanDevotionDate.BackColor = Color.FromArgb(224, 224, 224);
+            txtLoanDevotionDate.BorderStyle = BorderStyle.None;
+            txtLoanDevotionDate.Enabled = false;
+            txtLoanDevotionDate.Location = new Point(136, 134);
+            txtLoanDevotionDate.Name = "txtLoanDevotionDate";
+            txtLoanDevotionDate.Size = new Size(229, 20);
+            txtLoanDevotionDate.TabIndex = 4;
+            // 
+            // txtLoanDate
+            // 
+            txtLoanDate.BackColor = Color.FromArgb(224, 224, 224);
+            txtLoanDate.BorderStyle = BorderStyle.None;
+            txtLoanDate.Enabled = false;
+            txtLoanDate.Location = new Point(136, 108);
+            txtLoanDate.Name = "txtLoanDate";
+            txtLoanDate.Size = new Size(229, 20);
+            txtLoanDate.TabIndex = 3;
+            // 
+            // txtLoanBook
+            // 
+            txtLoanBook.BackColor = Color.FromArgb(224, 224, 224);
+            txtLoanBook.BorderStyle = BorderStyle.None;
+            txtLoanBook.Enabled = false;
+            txtLoanBook.Location = new Point(136, 82);
+            txtLoanBook.Name = "txtLoanBook";
+            txtLoanBook.Size = new Size(229, 20);
+            txtLoanBook.TabIndex = 2;
+            // 
+            // txtLoanId
+            // 
+            txtLoanId.BackColor = Color.FromArgb(224, 224, 224);
+            txtLoanId.BorderStyle = BorderStyle.None;
+            txtLoanId.Enabled = false;
+            txtLoanId.Location = new Point(136, 31);
+            txtLoanId.Name = "txtLoanId";
+            txtLoanId.Size = new Size(229, 20);
+            txtLoanId.TabIndex = 0;
+            // 
+            // txtLoanUser
+            // 
+            txtLoanUser.BackColor = Color.FromArgb(224, 224, 224);
+            txtLoanUser.BorderStyle = BorderStyle.None;
+            txtLoanUser.Enabled = false;
+            txtLoanUser.ForeColor = SystemColors.InfoText;
+            txtLoanUser.Location = new Point(136, 56);
+            txtLoanUser.Name = "txtLoanUser";
+            txtLoanUser.Size = new Size(229, 20);
+            txtLoanUser.TabIndex = 1;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(13, 239);
+            label13.Name = "label13";
+            label13.Size = new Size(77, 20);
+            label13.TabIndex = 2;
+            label13.Text = "Prestamos";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(6, 134);
+            label15.Name = "label15";
+            label15.Size = new Size(124, 20);
+            label15.TabIndex = 2;
+            label15.Text = "Fecha devolución";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(16, 108);
+            label14.Name = "label14";
+            label14.Size = new Size(114, 20);
+            label14.TabIndex = 2;
+            label14.Text = "Fecha prestamo";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(71, 31);
+            label16.Name = "label16";
+            label16.Size = new Size(22, 20);
+            label16.TabIndex = 2;
+            label16.Text = "Id";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(87, 82);
+            label12.Name = "label12";
+            label12.Size = new Size(43, 20);
+            label12.TabIndex = 2;
+            label12.Text = "Libro";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(71, 56);
+            label11.Name = "label11";
+            label11.Size = new Size(59, 20);
+            label11.TabIndex = 2;
+            label11.Text = "Usuario";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(371, 239);
+            label10.Name = "label10";
+            label10.Size = new Size(49, 20);
+            label10.TabIndex = 1;
+            label10.Text = "Libros";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(373, 25);
+            label9.Name = "label9";
+            label9.Size = new Size(65, 20);
+            label9.TabIndex = 1;
+            label9.Text = "Usuarios";
+            // 
+            // dgvLoans
+            // 
+            dgvLoans.AllowUserToAddRows = false;
+            dgvLoans.AllowUserToDeleteRows = false;
+            dgvLoans.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvLoans.Location = new Point(13, 262);
+            dgvLoans.Name = "dgvLoans";
+            dgvLoans.ReadOnly = true;
+            dgvLoans.RowHeadersWidth = 51;
+            dgvLoans.Size = new Size(352, 188);
+            dgvLoans.TabIndex = 0;
+            // 
+            // dgvBookLoans
+            // 
+            dgvBookLoans.AllowUserToAddRows = false;
+            dgvBookLoans.AllowUserToDeleteRows = false;
+            dgvBookLoans.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvBookLoans.Location = new Point(371, 262);
+            dgvBookLoans.Name = "dgvBookLoans";
+            dgvBookLoans.ReadOnly = true;
+            dgvBookLoans.RowHeadersWidth = 51;
+            dgvBookLoans.Size = new Size(300, 188);
+            dgvBookLoans.TabIndex = 0;
+            dgvBookLoans.CellClick += dgvBookLoans_CellClick;
+            // 
+            // dgvUserLoans
+            // 
+            dgvUserLoans.AllowUserToAddRows = false;
+            dgvUserLoans.AllowUserToDeleteRows = false;
+            dgvUserLoans.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvUserLoans.Location = new Point(373, 48);
+            dgvUserLoans.Name = "dgvUserLoans";
+            dgvUserLoans.ReadOnly = true;
+            dgvUserLoans.RowHeadersWidth = 51;
+            dgvUserLoans.Size = new Size(300, 188);
+            dgvUserLoans.TabIndex = 0;
+            dgvUserLoans.CellClick += dgvUserLoans_CellClick;
+            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -546,6 +789,7 @@
             Controls.Add(btnViewBorrow);
             Controls.Add(btnViewBook);
             Controls.Add(btnViewUser);
+            Controls.Add(gbLoans);
             Controls.Add(gbBooks);
             Controls.Add(gbUsers);
             FormBorderStyle = FormBorderStyle.None;
@@ -559,6 +803,11 @@
             gbBooks.ResumeLayout(false);
             gbBooks.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBook).EndInit();
+            gbLoans.ResumeLayout(false);
+            gbLoans.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvLoans).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvBookLoans).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUserLoans).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -598,5 +847,25 @@
         private Button btnNewBook;
         private Button btnSaveBook;
         private DataGridView dgvBook;
+        private GroupBox gbLoans;
+        private DataGridView dgvLoans;
+        private DataGridView dgvBookLoans;
+        private DataGridView dgvUserLoans;
+        private Label label10;
+        private Label label9;
+        private Label label12;
+        private Label label11;
+        private Label label13;
+        private Label label15;
+        private Label label14;
+        private TextBox txtLoanUser;
+        private TextBox txtLoanDevotionDate;
+        private TextBox txtLoanDate;
+        private TextBox txtLoanBook;
+        private Button btnLend;
+        private Button btnLoanClear;
+        private Button btnReturn;
+        private TextBox txtLoanId;
+        private Label label16;
     }
 }

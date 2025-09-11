@@ -23,12 +23,16 @@ namespace gestion_biblioteca
 
             gbUsers.Visible = false;
             gbBooks.Visible = false;
+            gbLoans.Visible = false;
 
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MouseDown += new MouseEventHandler(mainForm_MouseDown);
         }
 
         Biblioteca biblioteca = new Biblioteca();
+
+        private int? selectedUserId = null;
+        private int? selectedBookId = null;
 
         private void create_dgvUsers()
         {
@@ -87,12 +91,64 @@ namespace gestion_biblioteca
         {
             gbUsers.Visible = true;
             gbBooks.Visible = false;
+            gbLoans.Visible = false;
+
         }
 
         private void btnViewBook_Click(object sender, EventArgs e)
         {
             gbUsers.Visible = false;
             gbBooks.Visible = true;
+            gbLoans.Visible = false;
+        }
+
+        private void btnViewBorrow_Click(object sender, EventArgs e)
+        {
+            gbUsers.Visible = false;
+            gbBooks.Visible = false;
+            gbLoans.Visible = true;
+
+            dgvUserLoans.ColumnCount = 3;
+            dgvUserLoans.Columns[0].Name = "Id";
+            dgvUserLoans.Columns[0].Width = 50;
+            dgvUserLoans.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvUserLoans.Columns[1].Name = "Nombre completo";
+            dgvUserLoans.Columns[1].Width = 260;
+            dgvUserLoans.Columns[2].Name = "Correo";
+            dgvUserLoans.Columns[2].Width = 260;
+
+            DataGridViewColumn columnId = dgvUserLoans.Columns["Id"];
+            columnId.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            DataGridViewColumn columnName = dgvUserLoans.Columns["Nombre completo"];
+            columnName.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            DataGridViewColumn columnEmail = dgvUserLoans.Columns["Correo"];
+            columnEmail.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvBookLoans.ColumnCount = 4;
+            dgvBookLoans.Columns[0].Name = "Id";
+            dgvBookLoans.Columns[0].Width = 50;
+            dgvBookLoans.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvBookLoans.Columns[1].Name = "Titulo";
+            dgvBookLoans.Columns[1].Width = 225;
+            dgvBookLoans.Columns[2].Name = "Autor";
+            dgvBookLoans.Columns[2].Width = 225;
+            dgvBookLoans.Columns[3].Name = "Cantidad";
+            dgvBookLoans.Columns[3].Width = 100;
+
+            dgvLoans.ColumnCount = 5;
+            dgvLoans.Columns[0].Name = "Id";
+            dgvLoans.Columns[0].Width = 50;
+            dgvLoans.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvLoans.Columns[1].Name = "Usuario";
+            dgvLoans.Columns[1].Width = 200;
+            dgvLoans.Columns[2].Name = "Libro";
+            dgvLoans.Columns[2].Width = 200;
+            dgvLoans.Columns[3].Name = "Fecha Préstamo";
+            dgvLoans.Columns[3].Width = 100;
+            dgvLoans.Columns[4].Name = "Fecha Devolución";
+            dgvLoans.Columns[4].Width = 100;
+
+            loanRefreshGrid();
         }
 
         private void btnSaveUser_Click(object sender, EventArgs e)
@@ -343,6 +399,86 @@ namespace gestion_biblioteca
             {
                 dgvBook.Rows.Add(libro.Id, libro.Titulo, libro.Autor, libro.Cantidad);
             }
+        }
+
+        private void dgvUserLoans_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvUserLoans.Rows[e.RowIndex];
+                selectedUserId = (int)row.Cells[0].Value;
+                txtLoanUser.Text = row.Cells[1].Value.ToString();
+            }
+        }
+
+        private void dgvBookLoans_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvBookLoans.Rows[e.RowIndex];
+                selectedBookId = (int)row.Cells[0].Value;
+                txtLoanBook.Text = row.Cells[1].Value.ToString();
+            }
+        }
+
+        private void btnLend_Click(object sender, EventArgs e)
+        {
+            if (selectedUserId == null || selectedBookId == null)
+            {
+                MessageBox.Show("Seleccione un usuario y un libro antes de registrar el préstamo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                biblioteca.RegistrarPrestamo((int)selectedUserId, (int)selectedBookId);
+                MessageBox.Show($"Préstamo registrado: Usuario Id {selectedUserId}, Libro Id {selectedBookId}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loanRefreshGrid();
+                selectedUserId = null;
+                selectedBookId = null;
+                txtLoanUser.Clear();
+                txtLoanBook.Clear();
+                txtLoanId.Clear();
+                txtLoanDevotionDate.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al registrar el préstamo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void loanRefreshGrid()
+        {
+            dgvUserLoans.Rows.Clear();
+            foreach (var usuario in biblioteca.ListarUsuarios())
+            {
+                dgvUserLoans.Rows.Add(usuario.Id, usuario.Nombre, usuario.Correo);
+            }
+
+            dgvBookLoans.Rows.Clear();
+            foreach (var libro in biblioteca.ListarLibros())
+            {
+                dgvBookLoans.Rows.Add(libro.Id, libro.Titulo, libro.Autor, libro.Cantidad);
+            }
+
+            dgvLoans.Rows.Clear();
+            foreach (var prestamo in biblioteca.ListarPrestamos())
+            {
+                string returnDate = prestamo.FechaDevolucion.HasValue ? prestamo.FechaDevolucion.Value.ToString("dd/MM/yyyy") : "No devuelto";
+                dgvLoans.Rows.Add(prestamo.Id, prestamo.Usuario.Nombre, prestamo.Libro.Titulo, prestamo.FechaPrestamo.ToString("dd/MM/yyyy"), returnDate);
+            }
+
+            txtLoanDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+        }
+
+        private void btnLoanClear_Click(object sender, EventArgs e)
+        {
+            selectedUserId = null;
+            selectedBookId = null;
+            txtLoanUser.Clear();
+            txtLoanBook.Clear();
+            txtLoanId.Clear();
+            txtLoanDevotionDate.Clear();
         }
     }
 }

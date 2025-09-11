@@ -119,5 +119,38 @@ namespace gestion_biblioteca
             libroIdToRow.Remove(id);
             nextRowLibroIndex--;
         }
+
+        /*
+         * Préstamos
+         */
+        private List<Prestamo> prestamos = new List<Prestamo>();
+        private Dictionary<int, Prestamo> prestamosDict = new Dictionary<int, Prestamo>();
+        private int nextPrestamoId = 1;
+
+        public Prestamo RegistrarPrestamo(int usuarioId, int libroId)
+        {
+            if (!usuariosDict.ContainsKey(usuarioId)) throw new KeyNotFoundException("Usuario no encontrado");
+
+            if (!librosDict.ContainsKey(libroId)) throw new KeyNotFoundException("Libro no encontrado");
+
+            Usuario usuario = usuariosDict[usuarioId];
+            Libro libro = librosDict[libroId];
+
+            if (libro.Cantidad <= 0) throw new InvalidOperationException("No hay copias disponibles de este libro.");
+
+            int prestamoId = nextPrestamoId++;
+            Prestamo nuevoPrestamo = new Prestamo(prestamoId, usuario, libro);
+            
+            prestamos.Add(nuevoPrestamo);
+            prestamosDict[prestamoId] = nuevoPrestamo;
+            libro.Cantidad--;
+
+            return nuevoPrestamo;
+        }
+
+        public List<Prestamo> ListarPrestamos()
+        {
+            return prestamos;
+        }
     }
 }
