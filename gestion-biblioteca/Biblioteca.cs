@@ -109,5 +109,15 @@ namespace gestion_biblioteca
             libro.Autor = autor;
             libro.Cantidad = cantidad;
         }
+
+        public void EliminarLibro(int id)
+        {
+            if (!librosDict.ContainsKey(id)) throw new KeyNotFoundException("Libro no encontrado");
+            Libro libro = librosDict[id];
+            libros.Remove(libro);
+            librosDict.Remove(id);
+            libroIdToRow.Remove(id);
+            nextRowLibroIndex--;
+        }
     }
 }

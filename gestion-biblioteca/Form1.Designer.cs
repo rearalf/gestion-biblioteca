@@ -382,6 +382,7 @@
             btnDeleteBook.TabIndex = 7;
             btnDeleteBook.Text = "Eliminar";
             btnDeleteBook.UseVisualStyleBackColor = false;
+            btnDeleteBook.Click += btnDeleteBook_Click;
             // 
             // btnUpdateBook
             // 

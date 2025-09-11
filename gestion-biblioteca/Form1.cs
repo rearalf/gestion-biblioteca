@@ -275,15 +275,6 @@ namespace gestion_biblioteca
             }
         }
 
-        private void refrescarLibrosGrid()
-        {
-            dgvBook.Rows.Clear();
-            foreach (var libro in biblioteca.ListarLibros())
-            {
-                dgvBook.Rows.Add(libro.Id, libro.Titulo, libro.Autor, libro.Cantidad);
-            }
-        }
-
         private void btnUpdateBook_Click(object sender, EventArgs e)
         {
             int id;
@@ -306,6 +297,51 @@ namespace gestion_biblioteca
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+
+            try
+            {
+                biblioteca.ActualizarLibro(id, titulo, autor, cantidad);
+
+                refrescarLibrosGrid();
+                txtBookId.Clear();
+                txtTitleBook.Clear();
+                txtAuthorBook.Clear();
+                txtAmountBook.Clear();
+                txtTitleBook.Focus();
+                MessageBox.Show($"Libro con Id {id} actualizado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al actualizar el libro: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDeleteBook_Click(object sender, EventArgs e)
+        {
+            int id;
+            if (!int.TryParse(txtBookId.Text.Trim(), out id))
+            {
+                MessageBox.Show("El Id ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            biblioteca.EliminarLibro(id);
+            refrescarLibrosGrid();
+            txtBookId.Clear();
+            txtTitleBook.Clear();
+            txtAuthorBook.Clear();
+            txtAmountBook.Clear();
+            txtTitleBook.Focus();
+            MessageBox.Show($"Libro con Id {id} eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void refrescarLibrosGrid()
+        {
+            dgvBook.Rows.Clear();
+            foreach (var libro in biblioteca.ListarLibros())
+            {
+                dgvBook.Rows.Add(libro.Id, libro.Titulo, libro.Autor, libro.Cantidad);
             }
         }
     }
