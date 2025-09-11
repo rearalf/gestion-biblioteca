@@ -24,6 +24,7 @@ namespace gestion_biblioteca
             gbUsers.Visible = false;
             gbBooks.Visible = false;
             gbLoans.Visible = false;
+            gbDashboard.Visible = true;
 
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MouseDown += new MouseEventHandler(mainForm_MouseDown);
@@ -88,11 +89,20 @@ namespace gestion_biblioteca
                 mainForm.ActiveForm.WindowState = FormWindowState.Minimized;
         }
 
+        private void btnViewDashboard_Click(object sender, EventArgs e)
+        {
+            gbUsers.Visible = false;
+            gbBooks.Visible = false;
+            gbLoans.Visible = false;
+            gbDashboard.Visible = true;
+        }
+
         private void btnViewUser_Click(object sender, EventArgs e)
         {
             gbUsers.Visible = true;
             gbBooks.Visible = false;
             gbLoans.Visible = false;
+            gbDashboard.Visible = false;
 
         }
 
@@ -101,6 +111,7 @@ namespace gestion_biblioteca
             gbUsers.Visible = false;
             gbBooks.Visible = true;
             gbLoans.Visible = false;
+            gbDashboard.Visible = false;
         }
 
         private void btnViewBorrow_Click(object sender, EventArgs e)
@@ -108,6 +119,7 @@ namespace gestion_biblioteca
             gbUsers.Visible = false;
             gbBooks.Visible = false;
             gbLoans.Visible = true;
+            gbDashboard.Visible = false;
 
             dgvUserLoans.ColumnCount = 3;
             dgvUserLoans.Columns[0].Name = "Id";

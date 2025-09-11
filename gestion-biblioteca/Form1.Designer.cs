@@ -43,7 +43,7 @@
             label2 = new Label();
             label1 = new Label();
             dgvUsers = new DataGridView();
-            button2 = new Button();
+            btnViewDashboard = new Button();
             label4 = new Label();
             btnClose = new Button();
             btnMinus = new Button();
@@ -81,6 +81,7 @@
             dgvLoans = new DataGridView();
             dgvBookLoans = new DataGridView();
             dgvUserLoans = new DataGridView();
+            gbDashboard = new GroupBox();
             gbUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             gbBooks.SuspendLayout();
@@ -307,20 +308,21 @@
             dgvUsers.TabIndex = 11;
             dgvUsers.CellClick += dgvUsers_CellClick;
             // 
-            // button2
+            // btnViewDashboard
             // 
-            button2.BackColor = Color.White;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
-            button2.FlatAppearance.MouseOverBackColor = Color.White;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Image = Properties.Resources.chart_bar_rows;
-            button2.Location = new Point(11, 57);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 109);
-            button2.TabIndex = 0;
-            button2.UseVisualStyleBackColor = false;
+            btnViewDashboard.BackColor = Color.White;
+            btnViewDashboard.FlatAppearance.BorderSize = 0;
+            btnViewDashboard.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
+            btnViewDashboard.FlatAppearance.MouseOverBackColor = Color.White;
+            btnViewDashboard.FlatStyle = FlatStyle.Flat;
+            btnViewDashboard.Image = Properties.Resources.chart_bar_rows;
+            btnViewDashboard.Location = new Point(11, 57);
+            btnViewDashboard.Margin = new Padding(3, 4, 3, 4);
+            btnViewDashboard.Name = "btnViewDashboard";
+            btnViewDashboard.Size = new Size(94, 109);
+            btnViewDashboard.TabIndex = 0;
+            btnViewDashboard.UseVisualStyleBackColor = false;
+            btnViewDashboard.Click += btnViewDashboard_Click;
             // 
             // label4
             // 
@@ -779,15 +781,25 @@
             dgvUserLoans.TabIndex = 0;
             dgvUserLoans.CellClick += dgvUserLoans_CellClick;
             // 
+            // gbDashboard
+            // 
+            gbDashboard.Location = new Point(111, 60);
+            gbDashboard.Name = "gbDashboard";
+            gbDashboard.Size = new Size(680, 463);
+            gbDashboard.TabIndex = 6;
+            gbDashboard.TabStop = false;
+            gbDashboard.Text = "Dashboard";
+            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(803, 535);
+            Controls.Add(gbDashboard);
             Controls.Add(btnMinus);
             Controls.Add(btnClose);
             Controls.Add(label4);
-            Controls.Add(button2);
+            Controls.Add(btnViewDashboard);
             Controls.Add(btnViewBorrow);
             Controls.Add(btnViewBook);
             Controls.Add(btnViewUser);
@@ -821,7 +833,7 @@
         private Button btnViewBorrow;
         private GroupBox gbUsers;
         private DataGridView dgvUsers;
-        private Button button2;
+        private Button btnViewDashboard;
         private TextBox txtUserId;
         private Label label3;
         private Label label2;
@@ -869,5 +881,6 @@
         private Button btnLoanDevotion;
         private TextBox txtLoanId;
         private Label label16;
+        private GroupBox gbDashboard;
     }
 }
