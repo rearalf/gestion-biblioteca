@@ -136,6 +136,10 @@ namespace gestion_biblioteca
             Usuario usuario = usuariosDict[usuarioId];
             Libro libro = librosDict[libroId];
 
+            bool tienePrestamoActivo = prestamos.Any(p => p.Usuario.Id == usuarioId && p.Libro.Id == libroId && p.FechaDevolucion == null);
+
+            if (tienePrestamoActivo) throw new InvalidOperationException("El usuario ya tiene un préstamo activo de este libro.");
+
             if (libro.Cantidad <= 0) throw new InvalidOperationException("No hay copias disponibles de este libro.");
 
             int prestamoId = nextPrestamoId++;

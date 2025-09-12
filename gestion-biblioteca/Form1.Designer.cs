@@ -587,7 +587,7 @@
             gbLoans.Size = new Size(679, 461);
             gbLoans.TabIndex = 12;
             gbLoans.TabStop = false;
-            gbLoans.Text = "Prestamos";
+            gbLoans.Text = "Préstamos";
             // 
             // btnLoanClear
             // 
@@ -677,7 +677,7 @@
             label13.Name = "label13";
             label13.Size = new Size(77, 20);
             label13.TabIndex = 2;
-            label13.Text = "Prestamos";
+            label13.Text = "Préstamos";
             // 
             // label15
             // 
@@ -795,7 +795,6 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(803, 535);
-            Controls.Add(gbDashboard);
             Controls.Add(btnMinus);
             Controls.Add(btnClose);
             Controls.Add(label4);
@@ -806,6 +805,7 @@
             Controls.Add(gbLoans);
             Controls.Add(gbBooks);
             Controls.Add(gbUsers);
+            Controls.Add(gbDashboard);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "mainForm";
